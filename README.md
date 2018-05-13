@@ -1,7 +1,7 @@
 # Sweep 3D LIDAR
 A prototype of the sweep lidar scanner used for 3d scanning.
 
-![Screenshot]()
+![Screenshot](readme/software.png)
 
 *Screenshot of the software*
 
