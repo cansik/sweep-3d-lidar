@@ -37,8 +37,6 @@ int sampleStep = 3;
 int sampleRate = 500;
 float pointSize = 1.0f;
 
-boolean highRes = true;
-
 ControlP5 cp5;
 
 void setup()
@@ -69,12 +67,6 @@ void setup()
   cp5.addSlider("scanWaitTime", 10, 150, 10, 50, 100, 15)
     .setRange(0, 2000)
     .setLabel("Wait Time");
-
-  cp5.addToggle("highRes")
-    .setPosition(10, 70)
-    .setSize(50, 20)
-    .setValue(true)
-    .setCaptionLabel("High Res");
 }
 
 void draw()
@@ -154,38 +146,38 @@ void performScan()
     moveServo(90);
 
     println("creating point cloud...");
+    createPointCloudFromData();
 
-    cloud = createShape();
-    cloud.beginShape(POINTS);
-
-    int c = 0;
-    for (CloudPoint point : points)
-    {
-      space.pushMatrix();
-
-      space.rotateZ(radians(180));
-      space.rotateX(radians(-point.recordAngle));
-
-      space.translate(point.sample.getLocation().x, point.sample.getLocation().y);
-
-      cloud.strokeWeight(5);
-      cloud.fill(255, 0, point.sample.getSignalStrength());
-      cloud.stroke(255, 0, point.sample.getSignalStrength());
-      //cloud.noStroke();
-
-      float x = space.modelX(0f, 0f, 0f);
-      float y = space.modelY(0f, 0f, 0f);
-      float z = space.modelZ(0f, 0f, 0f);
-
-      cloud.vertex(x, y, z);
-      //println("P " + c++ + ": " + x + ", " + y + ", " + z);
-
-      space.popMatrix();
-    }
-
-    cloud.endShape();
     println("finished!");
   }
+}
+
+void createPointCloudFromData()
+{
+  cloud = createShape();
+  cloud.beginShape(POINTS);
+
+  for (CloudPoint point : points)
+  {
+    space.pushMatrix();
+
+    space.rotateZ(radians(180));
+    space.rotateX(radians(-point.recordAngle));
+
+    space.translate(point.sample.getLocation().x, point.sample.getLocation().y);
+
+    cloud.fill(255, 0, point.sample.getSignalStrength());
+    cloud.stroke(255, 0, point.sample.getSignalStrength());
+    cloud.strokeWeight(int(pointSize) * 3);
+
+    float x = space.modelX(0f, 0f, 0f);
+    float y = space.modelY(0f, 0f, 0f);
+    float z = space.modelZ(0f, 0f, 0f);
+
+    cloud.vertex(x, y, z);
+    space.popMatrix();
+  }
+  cloud.endShape();
 }
 
 void displayData()
@@ -204,27 +196,8 @@ void displayData()
   sphereDetail(5);
   sphere(30);
 
-  if (!highRes)
-  {
-    shape(cloud);
-    popMatrix();
-    return;
-  }
-
-  // show all sweep samples
-  for (CloudPoint point : points)
-  {
-    pushMatrix();
-
-    rotateZ(radians(180));
-    rotateX(radians(-point.recordAngle));
-
-    translate(point.sample.getLocation().x, point.sample.getLocation().y);
-    fill(255, 0, point.sample.getSignalStrength());
-    noStroke();
-    box(pointSize);
-    popMatrix();
-  }
+  // render cloud
+  shape(cloud);
   popMatrix();
 }
 
