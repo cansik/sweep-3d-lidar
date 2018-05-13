@@ -31,11 +31,17 @@ int startAngle = 15; //15;
 int endAngle = 175; //170;
 int currentAngle;
 
-int scanWaitTime = 300;
-int motorSpeed = 5;
+float motorZCorrection = 10.5; // cm
+
+int scanWaitTime = 3000;
 int sampleStep = 3;
-int sampleRate = 500;
-float pointSize = 1.0f;
+float pointSize = 3.0f;
+
+int motorSpeed = 1;
+int sampleRate = 1000;
+
+boolean camRotate = false;
+boolean showLIDAR = true;
 
 ControlP5 cp5;
 
@@ -46,6 +52,7 @@ void setup()
   oscP5 = new OscP5(this, 9000);
 
   cam = new PeasyCam(this, 400);
+  cam.setSuppressRollRotationMode();
 
   space = createGraphics(10, 10, P3D);
   cloud = createShape();
@@ -65,13 +72,26 @@ void setup()
     .setLabel("Point Size");
 
   cp5.addSlider("scanWaitTime", 10, 150, 10, 50, 100, 15)
-    .setRange(0, 2000)
+    .setRange(0, 5000)
     .setLabel("Wait Time");
+
+  cp5.addToggle("camRotate")
+    .setPosition(10, 70)
+    .setSize(50, 20)
+    .setCaptionLabel("Cam Rotate");
+
+  cp5.addToggle("showLIDAR")
+    .setPosition(10, 110)
+    .setSize(50, 20)
+    .setCaptionLabel("Show LIDAR");
 }
 
 void draw()
 {
   background(0);
+
+  if (camRotate)
+    cam.rotateY(radians(0.5));
 
   if (!sweep.isRunning())
   {
@@ -129,8 +149,9 @@ void performScan()
   delay(scanWaitTime);
 
   // reading samples
-  println("scanning " + currentAngle + "°..:");
   List<SensorSample> samples = sweep.getSamples();
+
+  println("scanning " + currentAngle + "° with " + samples.size() + " points..:");
   for (SensorSample sample : samples)
   {
     points.add(new CloudPoint(sample, currentAngle));
@@ -164,11 +185,11 @@ void createPointCloudFromData()
     space.rotateZ(radians(180));
     space.rotateX(radians(-point.recordAngle));
 
-    space.translate(point.sample.getLocation().x, point.sample.getLocation().y);
+    space.translate(point.sample.getLocation().x, point.sample.getLocation().y, motorZCorrection);
 
     cloud.fill(255, 0, point.sample.getSignalStrength());
     cloud.stroke(255, 0, point.sample.getSignalStrength());
-    cloud.strokeWeight(int(pointSize) * 3);
+    cloud.strokeWeight(pointSize);
 
     float x = space.modelX(0f, 0f, 0f);
     float y = space.modelY(0f, 0f, 0f);
@@ -190,11 +211,14 @@ void displayData()
   noFill();
   box(300);
 
-  // show sweep position
-  stroke(255, 255, 0);
-  noFill();
-  sphereDetail(5);
-  sphere(30);
+  if (showLIDAR)
+  {
+    // show sweep position
+    stroke(255, 255, 0);
+    noFill();
+    sphereDetail(5);
+    sphere(10);
+  }
 
   // render cloud
   shape(cloud);
