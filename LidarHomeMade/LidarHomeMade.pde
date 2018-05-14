@@ -26,6 +26,7 @@ List<CloudPoint> points = new ArrayList<CloudPoint>();
 
 PShape cloud;
 
+boolean isReady = false;
 boolean isScanning = false;
 int startAngle = 15; //15;
 int endAngle = 175; //170;
@@ -37,8 +38,8 @@ int scanWaitTime = 3000;
 int sampleStep = 3;
 float pointSize = 3.0f;
 
-int motorSpeed = 1;
-int sampleRate = 1000;
+int motorSpeed = 5;
+int sampleRate = 500;
 
 boolean camRotate = false;
 boolean showLIDAR = true;
@@ -84,6 +85,27 @@ void setup()
     .setPosition(10, 110)
     .setSize(50, 20)
     .setCaptionLabel("Show LIDAR");
+
+  cp5.addButton("saveCloud")
+    .setValue(100)
+    .setPosition(10, 150)
+    .setSize(200, 19)
+    .setCaptionLabel("Save Cloud")
+    ;
+
+  cp5.addButton("loadCloud")
+    .setValue(100)
+    .setPosition(10, 175)
+    .setSize(200, 19)
+    .setCaptionLabel("Load Cloud")
+    ;
+
+  cp5.addButton("startScan")
+    .setValue(100)
+    .setPosition(10, 200)
+    .setSize(200, 19)
+    .setCaptionLabel("Scan")
+    ;
 }
 
 void draw()
@@ -103,6 +125,10 @@ void draw()
     cam.endHUD();
     return;
   }
+
+  // set ready!
+  if (!isReady)
+    isReady = true;
 
   if (isScanning)
   {
@@ -227,15 +253,44 @@ void displayData()
 
 void keyPressed()
 {
+  if (key == 'c')
+  {
+    startScan(100);
+  }
+
   if (key == 's')
   {
-    println("start scanning...");
-
-    isScanning = true;
-    currentAngle = startAngle;
-
-    points.clear();
+    saveCloud(100);
   }
+}
+
+void saveCloud(int value)
+{
+  if (!isReady)
+    return;
+
+  selectOutput("PLY file to store cloud:", "saveFileSelected");
+}
+
+void loadCloud(int value)
+{
+  if (!isReady)
+    return;
+
+  selectInput("PLY file to load cloud:", "openFileSelected");
+}
+
+void startScan(int value)
+{
+  if (!isReady)
+    return;
+
+  println("start scanning...");
+
+  isScanning = true;
+  currentAngle = startAngle;
+
+  points.clear();
 }
 
 void mousePressed() {
@@ -245,5 +300,22 @@ void mousePressed() {
     cam.setActive(false);
   } else {
     cam.setActive(true);
+  }
+}
+
+void saveFileSelected(File selection) {
+  if (selection == null) {
+    println("Window was closed or the user hit cancel.");
+  } else {
+    String path = selection.getAbsolutePath();
+    savePointCloud(cloud, path);
+  }
+}
+
+void openFileSelected(File selection) {
+  if (selection == null) {
+    println("Window was closed or the user hit cancel.");
+  } else {
+    String path = selection.getAbsolutePath();
   }
 }
