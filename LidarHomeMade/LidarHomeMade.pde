@@ -317,5 +317,6 @@ void openFileSelected(File selection) {
     println("Window was closed or the user hit cancel.");
   } else {
     String path = selection.getAbsolutePath();
+    cloud = loadPointCloud(path);
   }
 }

@@ -63,7 +63,7 @@ void savePointCloud(PShape cloud, String fileName)
   }
 
   ply.elements.put("vertex", vertex);
-  ply.setFormat(ASCII);
+  //ply.setFormat(ASCII);
   println(ply);
 
   try
@@ -78,10 +78,36 @@ void savePointCloud(PShape cloud, String fileName)
 PShape loadPointCloud(String fileName)
 {
   Path path = Paths.get(fileName);
-  //PLY bunny = PLY.load(path);
+  PLY ply = new PLY();
+
+  try
+  {
+    ply = PLY.load(path);
+  } 
+  catch (Exception ex) {
+    ex.printStackTrace();
+  }
+
+  PLYElementList vertex = ply.elements("vertex");
+
+  // coordinates
+  float[] x = vertex.property(FLOAT32, "x");
+  float[] y = vertex.property(FLOAT32, "y");
+  float[] z = vertex.property(FLOAT32, "z");
+
+  // colors
+  byte[] r = vertex.property(UINT8, "red");
+  byte[] g = vertex.property(UINT8, "green");
+  byte[] b = vertex.property(UINT8, "blue");
 
   cloud = createShape();
   cloud.beginShape(POINTS);
+
+  for (int i = 0; i < x.length; i++)
+  {
+    cloud.fill(r[i], g[i], b[i]);
+    cloud.vertex(x[i], y[i], z[i]);
+  }
 
   cloud.endShape();
   return cloud;
