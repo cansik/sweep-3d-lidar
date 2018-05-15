@@ -10,6 +10,8 @@
 #include <IPAddress.h>
 
 #include <controller/BaseController.h>
+#include <esp_wifi_types.h>
+#include <WiFiType.h>
 
 #define STA_MAX_DELAYS 100
 
