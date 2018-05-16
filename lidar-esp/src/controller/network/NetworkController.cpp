@@ -17,8 +17,6 @@ NetworkController::NetworkController(const char *deviceName, const char *ssid, c
 void NetworkController::setup() {
     BaseController::setup();
 
-    WiFi.setHostname(deviceName);
-
     if(wifiMode == WIFI_STA)
     {
         initSTA();
@@ -29,6 +27,7 @@ void NetworkController::setup() {
         setupAP();
     }
 
+    WiFi.setHostname(deviceName);
     setupMDNS();
 
     printNetworkInformation();
