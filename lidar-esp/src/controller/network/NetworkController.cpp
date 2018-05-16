@@ -17,6 +17,8 @@ NetworkController::NetworkController(const char *deviceName, const char *ssid, c
 void NetworkController::setup() {
     BaseController::setup();
 
+    WiFi.disconnect(true);
+
     if(wifiMode == WIFI_STA)
     {
         initSTA();
