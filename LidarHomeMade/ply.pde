@@ -80,7 +80,11 @@ PShape loadPointCloud(String fileName)
 
   for (int i = 0; i < x.length; i++)
   {
-    cloud.fill(r[i], g[i], b[i]);
+    int rv = r[i] & 0xFF;
+    int gv = g[i] & 0xFF;
+    int bv = b[i] & 0xFF;
+
+    cloud.stroke(rv, gv, bv);
     cloud.vertex(x[i], y[i], z[i]);
   }
 
