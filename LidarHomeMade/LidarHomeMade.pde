@@ -33,8 +33,8 @@ int scanWaitTime = 3000;
 int sampleStep = 3;
 float pointSize = 3.0f;
 
-int motorSpeed = 5;
-int sampleRate = 500;
+int motorSpeed = 1;
+int sampleRate = 1000;
 
 boolean camRotate = false;
 boolean showLIDAR = true;
@@ -48,13 +48,8 @@ void setup()
   cam = new PeasyCam(this, 400);
   cam.setSuppressRollRotationMode();
 
-  setupServo();
-
   space = createGraphics(10, 10, P3D);
   cloud = createShape();
-
-  sweep = new SweepSensor(this);
-  sweep.startAsync("/dev/tty.usbserial-DO004HM4", motorSpeed, sampleRate);
 
   cp5 = new ControlP5(this);
   cp5.setAutoDraw(false);
@@ -107,10 +102,14 @@ void draw()
 {
   background(0);
 
+  // set ready!
+  if (!isReady)
+    isReady = true;
+
   if (camRotate)
     cam.rotateY(radians(0.5));
 
-  if (!sweep.isRunning())
+  if (isScanning && !sweep.isRunning())
   {
     cam.beginHUD();
     textAlign(CENTER, CENTER);
@@ -120,10 +119,6 @@ void draw()
     cam.endHUD();
     return;
   }
-
-  // set ready!
-  if (!isReady)
-    isReady = true;
 
   if (isScanning)
   {
@@ -187,6 +182,9 @@ void performScan()
     isScanning = false;
     moveServoInstant(90);
 
+    closeServo();
+    sweep.stop();
+
     println("creating point cloud...");
     createPointCloudFromData();
 
@@ -202,15 +200,6 @@ void createPointCloudFromData()
   for (CloudPoint point : points)
   {
     space.pushMatrix();
-
-    // mirror axis
-    //space.rotateZ(radians(180));
-
-    // simulate laydown
-    //space.rotateY(radians(-90));
-
-    // rotate by angle
-    //space.rotateY(radians(-point.recordAngle));
 
     // fix rotational things
     space.rotateY(radians(-90));
@@ -316,6 +305,12 @@ void startScan(int value)
 {
   if (!isReady)
     return;
+
+  // setup servo and sweep sensor
+  setupServo();
+
+  sweep = new SweepSensor(this);
+  sweep.startAsync("/dev/tty.usbserial-DO004HM4", motorSpeed, sampleRate);
 
   println("start scanning...");
 

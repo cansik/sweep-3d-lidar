@@ -16,6 +16,12 @@ void setupServo()
   servoPort = new Serial(this, servoSerialPortName, 115200);
 }
 
+void closeServo()
+{
+  servoPort.stop();
+  servoPort = null;
+}
+
 void setServo(float angle)
 {
   // osc
