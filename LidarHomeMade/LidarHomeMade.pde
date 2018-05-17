@@ -28,13 +28,15 @@ int startAngle = 0;
 int endAngle = 180;
 int currentAngle;
 
-// foot filter
-float filterSize = 50;
+// stand filter
+int standFilterSize = 100;
+int signalStrengthFilter = 125;
 
 float motorZCorrection = 0; // cm
 
 int scanWaitTime = 50;
 int sampleStep = 1;
+int scanIterationCount = 1;
 float pointSize = 3.0f;
 
 int motorSpeed = 5;
@@ -66,6 +68,11 @@ void setup()
   cp5.addSlider("sampleStep", 10, 150, 10, h, 100, 15)
     .setRange(1, 15)
     .setLabel("Sample Step");
+
+  h += 20;
+  cp5.addSlider("scanIterationCount", 10, 150, 10, h, 100, 15)
+    .setRange(1, 15)
+    .setLabel("Iteration Count");
 
   h += 20;
   cp5.addSlider("scanWaitTime", 10, 150, 10, h, 100, 15)
@@ -109,11 +116,16 @@ void setup()
     ;
 
   h += 30;
-  cp5.addSlider("filterSize", 10, 150, 10, h, 100, 15)
-    .setRange(0.0, 180)
-    .setLabel("Filter Size");
+  cp5.addSlider("standFilterSize", 10, 150, 10, h, 100, 15)
+    .setRange(0, 180)
+    .setLabel("Stand Filter Angle");
 
-  h += 25;
+  h += 20;
+  cp5.addSlider("signalStrengthFilter", 10, 150, 10, h, 100, 15)
+    .setRange(0, 255)
+    .setLabel("Min Signal Strength");
+
+  h += 20;
   cp5.addSlider("pointSize", 10, 150, 10, h, 100, 15)
     .setRange(0.5, 5)
     .setLabel("Point Size");
@@ -194,7 +206,7 @@ void draw()
     textAlign(CENTER, CENTER);
     textSize(40);
     fill(255);
-    text("scanning (" + currentAngle + "°)...", 0, 0);
+    text("scanning " + currentAngle + "°...", 0, 0);
     cam.endHUD();
   }
 
@@ -204,7 +216,9 @@ void draw()
   textSize(14);
   fill(0, 255, 0);
   textAlign(LEFT, CENTER);
-  text("FPS: " + frameRate + "\nVertex Count: " + cloud.getVertexCount(), 20, height - 70);
+  text("FPS: " + frameRate 
+    + "\nVertex Count: " + cloud.getVertexCount() 
+    + "\nCaptured Vertices: " + points.size(), 20, height - 70);
 
   cp5.draw();
   cam.endHUD();
@@ -218,13 +232,16 @@ void performScan()
   // wait for motor to be in area
   delay(scanWaitTime);
 
-  // reading samples
-  List<SensorSample> samples = readSweepSynchronous(sweep.getDevice());
-
-  println("scanning " + currentAngle + "° with " + samples.size() + " points..:");
-  for (SensorSample sample : samples)
+  for (int i = 0; i < scanIterationCount; i++)
   {
-    points.add(new CloudPoint(sample, currentAngle));
+    // reading samples
+    List<SensorSample> samples = readSweepSynchronous(sweep.getDevice());
+
+    println("scanning " + currentAngle + "° with " + samples.size() + " points (" + (i + 1) + ")..:");
+    for (SensorSample sample : samples)
+    {
+      points.add(new CloudPoint(sample, currentAngle));
+    }
   }
 
   // show and move to next angle
@@ -253,14 +270,16 @@ void createPointCloudFromData()
 
   int filteredCount = 0;
 
-  float filterStartAngle = 180 - (filterSize / 2);
-  float filterEndAngle = 180 + (filterSize / 2);
+  float filterStartAngle = 180 - (standFilterSize / 2f);
+  float filterEndAngle = 180 + (standFilterSize / 2f);
 
   for (CloudPoint point : points)
   {
     // check if has to been filtered
     float angle = Math.abs(point.sample.getAngle());
-    if (isPointFilter && angle >= filterStartAngle && angle <= filterEndAngle)
+    boolean filteredbyStand = angle >= filterStartAngle && angle <= filterEndAngle;
+    boolean fileredbySignal = point.sample.getSignalStrength() < signalStrengthFilter;
+    if (isPointFilter && (filteredbyStand || fileredbySignal))
     {
       filteredCount++;
       continue;
