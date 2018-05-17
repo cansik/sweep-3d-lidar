@@ -11,11 +11,6 @@ import peasy.PeasyCam;
 
 import ch.bildspur.sweep.*;
 
-import controlP5.*;
-
-OscP5 oscP5;
-NetAddress servoRemote = new NetAddress("192.168.1.24", 8000);
-
 SweepSensor sweep;
 
 PGraphics space;
@@ -28,8 +23,8 @@ PShape cloud;
 
 boolean isReady = false;
 boolean isScanning = false;
-int startAngle = 15; //15;
-int endAngle = 175; //170;
+int startAngle = 0;
+int endAngle = 180;
 int currentAngle;
 
 float motorZCorrection = 10.5; // cm
@@ -50,10 +45,10 @@ void setup()
 {
   size(1280, 800, P3D);
 
-  oscP5 = new OscP5(this, 9000);
-
   cam = new PeasyCam(this, 400);
   cam.setSuppressRollRotationMode();
+
+  setupServo();
 
   space = createGraphics(10, 10, P3D);
   cloud = createShape();
@@ -121,7 +116,7 @@ void draw()
     textAlign(CENTER, CENTER);
     translate(width / 2, height / 2);
     textSize(40);
-    text("waiting for sweep...", 0, 0);
+    text("waiting for lidar...", 0, 0);
     cam.endHUD();
     return;
   }

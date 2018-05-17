@@ -5,31 +5,6 @@ import org.jengineering.sjmply.PLY;
 import static org.jengineering.sjmply.PLYType.*;
 import static org.jengineering.sjmply.PLYFormat.*;
 
-void testSave()
-{
-  PShape cloud = createShape();
-  cloud.beginShape(POINTS);
-  cloud.fill(0, 255, 0);
-  cloud.vertex(-100, -100, -100);
-  cloud.vertex( 100, -100, -100);
-  cloud.vertex(   0, 0, 100);
-
-  cloud.vertex( 100, -100, -100);
-  cloud.vertex( 100, 100, -100);
-  cloud.vertex(   0, 0, 100);
-
-  cloud.vertex( 100, 100, -100);
-  cloud.vertex(-100, 100, -100);
-  cloud.vertex(   0, 0, 100);
-
-  cloud.vertex(-100, 100, -100);
-  cloud.vertex(-100, -100, -100);
-  cloud.vertex(   0, 0, 100);
-  cloud.endShape();
-
-  savePointCloud(cloud, sketchPath("triangle.ply"));
-}
-
 void savePointCloud(PShape cloud, String fileName)
 {
   Path path = Paths.get(fileName);
