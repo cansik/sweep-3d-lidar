@@ -23,9 +23,14 @@ PShape cloud;
 
 boolean isReady = false;
 boolean isScanning = false;
-int startAngle = 0; //15;
+int startAngle = 0;
 int endAngle = 180;
 int currentAngle;
+
+// foot filter
+float filterSize = 20;
+float filterStartAngle = 180 - (filterSize / 2);
+float filterEndAngle = 180 + (filterSize / 2);
 
 float motorZCorrection = 0; // cm
 
@@ -44,6 +49,7 @@ ControlP5 cp5;
 void setup()
 {
   size(1280, 800, P3D);
+  pixelDensity(2);
 
   cam = new PeasyCam(this, 400);
   cam.setSuppressRollRotationMode();
@@ -54,47 +60,74 @@ void setup()
   cp5 = new ControlP5(this);
   cp5.setAutoDraw(false);
 
-  cp5.addSlider("sampleStep", 10, 150, 10, 10, 100, 15)
+  int h = 10;
+  cp5.addSlider("sampleStep", 10, 150, 10, h, 100, 15)
     .setRange(1, 15)
     .setLabel("Sample Step");
 
-  cp5.addSlider("pointSize", 10, 150, 10, 30, 100, 15)
-    .setRange(0.5, 5)
-    .setLabel("Point Size");
-
-  cp5.addSlider("scanWaitTime", 10, 150, 10, 50, 100, 15)
+  h += 20;
+  cp5.addSlider("scanWaitTime", 10, 150, 10, h, 100, 15)
     .setRange(0, 5000)
     .setLabel("Wait Time");
 
+  h += 20;
+  ButtonBar speedBar = cp5.addButtonBar("motorSpeed")
+    .setPosition(10, h)
+    .setSize(200, 20)
+    .setCaptionLabel("Speed")
+    ;
+  for (int i = 1; i <= 10; i++)
+  {
+    speedBar.addItem(i + " Hz", i);
+  }
+
+  h += 25;
+  ButtonBar sampleRateBar = cp5.addButtonBar("sampleRate")
+    .setPosition(10, h)
+    .setSize(200, 20)
+    .setCaptionLabel("Sample Rate")
+    ;
+  sampleRateBar.addItem("500 Hz", 500);
+  sampleRateBar.addItem("750 Hz", 750);
+  sampleRateBar.addItem("1000 Hz", 1000);
+
+  h += 25;
+  cp5.addButton("startScan")
+    .setValue(100)
+    .setPosition(10, h)
+    .setSize(100, 19)
+    .setCaptionLabel("Scan")
+    ;
+
+  h += 30;
+  cp5.addSlider("pointSize", 10, 150, 10, h, 100, 15)
+    .setRange(0.5, 5)
+    .setLabel("Point Size");
+
+  h += 20;
   cp5.addToggle("camRotate")
-    .setPosition(10, 70)
+    .setPosition(10, h)
     .setSize(50, 20)
     .setCaptionLabel("Cam Rotate");
 
   cp5.addToggle("showLIDAR")
-    .setPosition(10, 110)
+    .setPosition(10 + 55, h)
     .setSize(50, 20)
     .setCaptionLabel("Show LIDAR");
 
+  h += 45;
   cp5.addButton("saveCloud")
     .setValue(100)
-    .setPosition(10, 150)
-    .setSize(200, 19)
+    .setPosition(10, h)
+    .setSize(75, 19)
     .setCaptionLabel("Save Cloud")
     ;
 
   cp5.addButton("loadCloud")
     .setValue(100)
-    .setPosition(10, 175)
-    .setSize(200, 19)
+    .setPosition(10 + 80, h)
+    .setSize(75, 19)
     .setCaptionLabel("Load Cloud")
-    ;
-
-  cp5.addButton("startScan")
-    .setValue(100)
-    .setPosition(10, 200)
-    .setSize(200, 19)
-    .setCaptionLabel("Scan")
     ;
 }
 
@@ -114,6 +147,7 @@ void draw()
     cam.beginHUD();
     textAlign(CENTER, CENTER);
     translate(width / 2, height / 2);
+    fill(255);
     textSize(40);
     text("waiting for lidar...", 0, 0);
     cam.endHUD();
@@ -147,12 +181,13 @@ void draw()
 
   // show infos
   cam.beginHUD();
-  cp5.draw();
 
   textSize(14);
   fill(0, 255, 0);
   textAlign(LEFT, CENTER);
   text("FPS: " + frameRate + "\nPoints: " + points.size(), 20, height - 70);
+
+  cp5.draw();
   cam.endHUD();
 }
 
@@ -200,6 +235,13 @@ void createPointCloudFromData()
   for (CloudPoint point : points)
   {
     space.pushMatrix();
+
+    // check if has to been filtered
+    float angle = Math.abs(point.sample.getAngle());
+    if (angle >= filterStartAngle || angle <= filterEndAngle)
+    {
+      continue;
+    }
 
     // fix rotational things
     space.rotateY(radians(-90));
