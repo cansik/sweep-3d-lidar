@@ -6,6 +6,7 @@ import oscP5.*;
 import netP5.*;
 
 import java.util.List;
+import java.util.Map;
 
 import peasy.PeasyCam;
 
@@ -45,6 +46,8 @@ boolean camRotate = false;
 boolean showLIDAR = true;
 
 ControlP5 cp5;
+ButtonBar sampleRateBar;
+ButtonBar speedBar;
 
 void setup()
 {
@@ -71,7 +74,7 @@ void setup()
     .setLabel("Wait Time");
 
   h += 20;
-  ButtonBar speedBar = cp5.addButtonBar("motorSpeed")
+  speedBar = cp5.addButtonBar("onMotorSpeedChanged")
     .setPosition(10, h)
     .setSize(200, 20)
     .setCaptionLabel("Speed")
@@ -82,7 +85,7 @@ void setup()
   }
 
   h += 25;
-  ButtonBar sampleRateBar = cp5.addButtonBar("sampleRate")
+  sampleRateBar = cp5.addButtonBar("onSampleRateChanged")
     .setPosition(10, h)
     .setSize(200, 20)
     .setCaptionLabel("Sample Rate")
@@ -234,14 +237,14 @@ void createPointCloudFromData()
 
   for (CloudPoint point : points)
   {
-    space.pushMatrix();
-
     // check if has to been filtered
     float angle = Math.abs(point.sample.getAngle());
     if (angle >= filterStartAngle || angle <= filterEndAngle)
     {
       continue;
     }
+
+    space.pushMatrix();
 
     // fix rotational things
     space.rotateY(radians(-90));
@@ -314,6 +317,18 @@ void showAxisMarker()
   line(0, 0, 0, 0, 0, axisLength);
 }
 
+void onMotorSpeedChanged(int n)
+{
+  Map<String, Object> values = (Map<String, Object>)speedBar.getItems().get(n);
+  motorSpeed = (int)values.get("value");
+}
+
+void onSampleRateChanged(int n)
+{
+  Map<String, Object> values = (Map<String, Object>)sampleRateBar.getItems().get(n);
+  sampleRate = (int)values.get("value");
+}
+
 void keyPressed()
 {
   if (key == 'c')
@@ -347,6 +362,8 @@ void startScan(int value)
 {
   if (!isReady)
     return;
+
+  println("starting sweep with Speed " + motorSpeed + " Hz and Sample Rate " + sampleRate + " Hz...");
 
   // setup servo and sweep sensor
   setupServo();
