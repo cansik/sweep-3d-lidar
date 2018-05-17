@@ -41,3 +41,9 @@ void moveServo(int angle)
     delay(50);
   }
 }
+
+void moveServoInstant(int angle)
+{
+  servoPosition = angle;
+  setServo(servoPosition);
+}

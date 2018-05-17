@@ -23,11 +23,11 @@ PShape cloud;
 
 boolean isReady = false;
 boolean isScanning = false;
-int startAngle = 0;
+int startAngle = 0; //15;
 int endAngle = 180;
 int currentAngle;
 
-float motorZCorrection = 10.5; // cm
+float motorZCorrection = 0; // cm
 
 int scanWaitTime = 3000;
 int sampleStep = 3;
@@ -164,7 +164,7 @@ void draw()
 void performScan()
 {
   // move to location
-  moveServo(currentAngle);
+  moveServoInstant(currentAngle);
 
   // wait for scanning area
   delay(scanWaitTime);
@@ -185,7 +185,7 @@ void performScan()
   {
     println("finished scanning!");
     isScanning = false;
-    moveServo(90);
+    moveServoInstant(90);
 
     println("creating point cloud...");
     createPointCloudFromData();
@@ -203,9 +203,23 @@ void createPointCloudFromData()
   {
     space.pushMatrix();
 
-    space.rotateZ(radians(180));
+    // mirror axis
+    //space.rotateZ(radians(180));
+
+    // simulate laydown
+    //space.rotateY(radians(-90));
+
+    // rotate by angle
+    //space.rotateY(radians(-point.recordAngle));
+
+    // fix rotational things
+    space.rotateY(radians(-90));
+    space.rotateZ(radians(-90));
+
+    // add servo movement
     space.rotateX(radians(-point.recordAngle));
 
+    // correct translation
     space.translate(point.sample.getLocation().x, point.sample.getLocation().y, motorZCorrection);
 
     cloud.fill(255, 0, point.sample.getSignalStrength());
@@ -228,6 +242,7 @@ void displayData()
   translate(0, 0);
 
   // draw floor grid
+  strokeWeight(1);
   stroke(255);
   noFill();
   box(300);
@@ -239,11 +254,33 @@ void displayData()
     noFill();
     sphereDetail(5);
     sphere(10);
+
+    // render axis marker
+    showAxisMarker();
   }
 
   // render cloud
   shape(cloud);
+
   popMatrix();
+}
+
+void showAxisMarker()
+{
+  int axisLength = 100;
+  strokeWeight(3);
+
+  // x
+  stroke(255, 0, 0);
+  line(0, 0, 0, axisLength, 0, 0);
+
+  // y
+  stroke(0, 255, 0);
+  line(0, 0, 0, 0, axisLength, 0);
+
+  // z
+  stroke(0, 0, 255);
+  line(0, 0, 0, 0, 0, axisLength);
 }
 
 void keyPressed()
