@@ -29,21 +29,20 @@ int endAngle = 180;
 int currentAngle;
 
 // foot filter
-float filterSize = 20;
-float filterStartAngle = 180 - (filterSize / 2);
-float filterEndAngle = 180 + (filterSize / 2);
+float filterSize = 50;
 
 float motorZCorrection = 0; // cm
 
-int scanWaitTime = 3000;
-int sampleStep = 3;
+int scanWaitTime = 50;
+int sampleStep = 1;
 float pointSize = 3.0f;
 
-int motorSpeed = 1;
-int sampleRate = 1000;
+int motorSpeed = 5;
+int sampleRate = 500;
 
 boolean camRotate = false;
 boolean showLIDAR = true;
+boolean isPointFilter = true;
 
 ControlP5 cp5;
 ButtonBar sampleRateBar;
@@ -98,16 +97,28 @@ void setup()
   cp5.addButton("startScan")
     .setValue(100)
     .setPosition(10, h)
-    .setSize(100, 19)
+    .setSize(80, 19)
     .setCaptionLabel("Scan")
     ;
 
+  cp5.addButton("createPointCloud")
+    .setValue(100)
+    .setPosition(10 + 85, h)
+    .setSize(100, 19)
+    .setCaptionLabel("Create Pointcloud")
+    ;
+
   h += 30;
+  cp5.addSlider("filterSize", 10, 150, 10, h, 100, 15)
+    .setRange(0.0, 180)
+    .setLabel("Filter Size");
+
+  h += 25;
   cp5.addSlider("pointSize", 10, 150, 10, h, 100, 15)
     .setRange(0.5, 5)
     .setLabel("Point Size");
 
-  h += 20;
+  h += 25;
   cp5.addToggle("camRotate")
     .setPosition(10, h)
     .setSize(50, 20)
@@ -117,6 +128,11 @@ void setup()
     .setPosition(10 + 55, h)
     .setSize(50, 20)
     .setCaptionLabel("Show LIDAR");
+
+  cp5.addToggle("isPointFilter")
+    .setPosition(10 + (2 * 55), h)
+    .setSize(50, 20)
+    .setCaptionLabel("Point Filter");
 
   h += 45;
   cp5.addButton("saveCloud")
@@ -188,7 +204,7 @@ void draw()
   textSize(14);
   fill(0, 255, 0);
   textAlign(LEFT, CENTER);
-  text("FPS: " + frameRate + "\nPoints: " + points.size(), 20, height - 70);
+  text("FPS: " + frameRate + "\nVertex Count: " + cloud.getVertexCount(), 20, height - 70);
 
   cp5.draw();
   cam.endHUD();
@@ -199,11 +215,11 @@ void performScan()
   // move to location
   moveServoInstant(currentAngle);
 
-  // wait for scanning area
+  // wait for motor to be in area
   delay(scanWaitTime);
 
   // reading samples
-  List<SensorSample> samples = sweep.getSamples();
+  List<SensorSample> samples = readSweepSynchronous(sweep.getDevice());
 
   println("scanning " + currentAngle + "° with " + samples.size() + " points..:");
   for (SensorSample sample : samples)
@@ -235,12 +251,18 @@ void createPointCloudFromData()
   cloud = createShape();
   cloud.beginShape(POINTS);
 
+  int filteredCount = 0;
+
+  float filterStartAngle = 180 - (filterSize / 2);
+  float filterEndAngle = 180 + (filterSize / 2);
+
   for (CloudPoint point : points)
   {
     // check if has to been filtered
     float angle = Math.abs(point.sample.getAngle());
-    if (angle >= filterStartAngle || angle <= filterEndAngle)
+    if (isPointFilter && angle >= filterStartAngle && angle <= filterEndAngle)
     {
+      filteredCount++;
       continue;
     }
 
@@ -268,6 +290,8 @@ void createPointCloudFromData()
     space.popMatrix();
   }
   cloud.endShape();
+
+  println("filtered " + filteredCount + " points!");
 }
 
 void displayData()
@@ -342,6 +366,14 @@ void keyPressed()
   }
 }
 
+void createPointCloud(int value)
+{
+  if (!isReady)
+    return;
+
+  createPointCloudFromData();
+}
+
 void saveCloud(int value)
 {
   if (!isReady)
@@ -375,6 +407,10 @@ void startScan(int value)
 
   isScanning = true;
   currentAngle = startAngle;
+
+  // move and wait at angle
+  moveServoInstant(currentAngle);
+  delay(1000);
 
   points.clear();
 }
