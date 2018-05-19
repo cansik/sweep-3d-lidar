@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="164fffa3-741a-4444-91b8-6eea7cb21cda" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="PointCloudRenderer.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Pcx/PointCloudRenderer.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="470">
+              <caret line="138" column="52" lean-forward="true" selection-start-line="138" selection-start-column="52" selection-end-line="138" selection-end-column="52" />
+              <folding>
+                <marker date="1526766946879" expanded="true" signature="33:6183" ph="{...}" />
+                <marker date="1526766946879" expanded="true" signature="111:6181" ph="{...}" />
+                <marker date="1526766946879" expanded="true" signature="126:389" ph="Editable attributes" />
+                <marker date="1526766946879" expanded="true" signature="399:535" ph="Internal resources" />
+                <marker date="1526766946879" expanded="true" signature="545:933" ph="Private variables" />
+                <marker date="1526766946879" expanded="true" signature="943:6175" ph="MonoBehaviour methods" />
+                <marker date="1526766946879" expanded="true" signature="999:1070" ph="{...}" />
+                <marker date="1526766946879" expanded="true" signature="1096:1799" ph="{...}" />
+                <marker date="1526766946879" expanded="true" signature="1217:1789" ph="{...}" />
+                <marker date="1526766946879" expanded="true" signature="1825:2318" ph="{...}" />
+                <marker date="1526766946879" expanded="true" signature="1871:2308" ph="{...}" />
+                <marker date="1526766946879" expanded="true" signature="1928:2087" ph="{...}" />
+                <marker date="1526766946879" expanded="true" signature="2108:2294" ph="{...}" />
+                <marker date="1526766946879" expanded="true" signature="2341:3749" ph="{...}" />
+                <marker date="1526766946879" expanded="true" signature="2422:2784" ph="{...}" />
+                <marker date="1526766946879" expanded="true" signature="2842:3739" ph="{...}" />
+                <marker date="1526766946879" expanded="true" signature="3780:6155" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Common.cginc" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Pcx/Shaders/Common.cginc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Sorter.compute" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assets/Pcx/Shaders/Sorter.compute">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="35" column="8" lean-forward="true" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PointCloudBuffer.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Pcx/PointCloudBuffer.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <marker date="1509089324000" expanded="true" signature="6:52" ph="..." />
+                <marker date="1509089324000" expanded="true" signature="67:1446" ph="{...}" />
+                <marker date="1509089324000" expanded="true" signature="129:1444" ph="{...}" />
+                <marker date="1509089324000" expanded="false" signature="144:635" ph="Public properties and methods" />
+                <marker date="1509089324000" expanded="true" signature="243:300" ph="{...}" />
+                <marker date="1509089324000" expanded="true" signature="310:402" ph="/// Create a compute buffer. ... " />
+                <marker date="1509089324000" expanded="true" signature="453:615" ph="{...}" />
+                <marker date="1509089324000" expanded="false" signature="645:885" ph="Serialized data members" />
+                <marker date="1509089324000" expanded="true" signature="728:819" ph="{...}" />
+                <marker date="1509089324000" expanded="false" signature="895:1438" ph="Editor functions" />
+                <marker date="1509089324000" expanded="true" signature="1024:1402" ph="{...}" />
+                <marker date="1509089324000" expanded="true" signature="1144:1392" ph="{...}" />
+                <marker date="1509089324000" expanded="true" signature="1275:1377" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MultiMode.shader" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Pcx/Shaders/MultiMode.shader">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="341">
+              <caret line="55" column="9" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
+              <folding>
+                <marker date="1509089324000" expanded="true" signature="31:3306" ph="{...}" />
+                <marker date="1509089324000" expanded="true" signature="52:157" ph="{...}" />
+                <marker date="1509089324000" expanded="true" signature="172:1462" ph="{...}" />
+                <marker date="1509089324000" expanded="true" signature="1487:3304" ph="{...}" />
+                <marker date="1509089324000" expanded="true" signature="1568:2183" ph="{...}" />
+                <marker date="1509089324000" expanded="true" signature="1591:2168" ph="{...}" />
+                <marker date="1509089324000" expanded="true" signature="2206:2740" ph="{...}" />
+                <marker date="1509089324000" expanded="true" signature="2229:2725" ph="{...}" />
+                <marker date="1509089324000" expanded="true" signature="2763:3298" ph="{...}" />
+                <marker date="1509089324000" expanded="true" signature="2786:3283" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>ScreenHeight</find>
+      <find>_pointColor</find>
+    </findStrings>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Pcx/PointCloudBuffer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Pcx/Shaders/Sorter.compute" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Pcx/Shaders/Common.cginc" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Pcx/Shaders/MultiMode.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Pcx/PointCloudRenderer.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/Pcx/PointCloudRenderer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Pcx/Shaders/Sorter.compute" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="22" />
+    <option name="width" value="1280" />
+    <option name="height" value="826" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="UnityExplorer" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="UnityExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="ad4990d8:FileSystemViewPaneBase$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="Pcx-3ede669ec622671aaf102cd81c21cba4d6ae7914" type="483dac07:UnityExplorerNode$Root" />
+            </path>
+            <path>
+              <item name="" type="ad4990d8:FileSystemViewPaneBase$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="Pcx-3ede669ec622671aaf102cd81c21cba4d6ae7914" type="483dac07:UnityExplorerNode$Root" />
+              <item name="" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="ad4990d8:FileSystemViewPaneBase$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="Pcx-3ede669ec622671aaf102cd81c21cba4d6ae7914" type="483dac07:UnityExplorerNode$Root" />
+              <item name="" type="1045f7f1:UnityExplorerNode" />
+              <item name="" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="ad4990d8:FileSystemViewPaneBase$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="Pcx-3ede669ec622671aaf102cd81c21cba4d6ae7914" type="483dac07:UnityExplorerNode$Root" />
+              <item name="" type="1045f7f1:UnityExplorerNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <option name="show-hidden-items" value="false" />
+      </pane>
+      <pane id="SolutionExplorer">
+        <option name="show-file-system" value="false" />
+        <option name="show-all-items" value="false" />
+      </pane>
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="164fffa3-741a-4444-91b8-6eea7cb21cda" name="Default" comment="" />
+      <created>1526764933255</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1526764933255</updated>
+      <workItem from="1526764936811" duration="1732000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1732000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="22" width="1920" height="1101" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Errors In Solution" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Unit Tests" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973376" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Unity" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="NuGet" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnityProjectConfiguration" isUnityUI="true" />
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Assets/Pcx/Shaders/MultiMode.shader">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="55" column="9" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
+          <folding>
+            <marker date="1509089324000" expanded="true" signature="31:3306" ph="{...}" />
+            <marker date="1509089324000" expanded="true" signature="52:157" ph="{...}" />
+            <marker date="1509089324000" expanded="true" signature="172:1462" ph="{...}" />
+            <marker date="1509089324000" expanded="true" signature="1487:3304" ph="{...}" />
+            <marker date="1509089324000" expanded="true" signature="1568:2183" ph="{...}" />
+            <marker date="1509089324000" expanded="true" signature="1591:2168" ph="{...}" />
+            <marker date="1509089324000" expanded="true" signature="2206:2740" ph="{...}" />
+            <marker date="1509089324000" expanded="true" signature="2229:2725" ph="{...}" />
+            <marker date="1509089324000" expanded="true" signature="2763:3298" ph="{...}" />
+            <marker date="1509089324000" expanded="true" signature="2786:3283" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Pcx/PointCloudBuffer.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1509089324000" expanded="true" signature="6:52" ph="..." />
+            <marker date="1509089324000" expanded="true" signature="67:1446" ph="{...}" />
+            <marker date="1509089324000" expanded="true" signature="129:1444" ph="{...}" />
+            <marker date="1509089324000" expanded="false" signature="144:635" ph="Public properties and methods" />
+            <marker date="1509089324000" expanded="true" signature="243:300" ph="{...}" />
+            <marker date="1509089324000" expanded="true" signature="310:402" ph="/// Create a compute buffer. ... " />
+            <marker date="1509089324000" expanded="true" signature="453:615" ph="{...}" />
+            <marker date="1509089324000" expanded="false" signature="645:885" ph="Serialized data members" />
+            <marker date="1509089324000" expanded="true" signature="728:819" ph="{...}" />
+            <marker date="1509089324000" expanded="false" signature="895:1438" ph="Editor functions" />
+            <marker date="1509089324000" expanded="true" signature="1024:1402" ph="{...}" />
+            <marker date="1509089324000" expanded="true" signature="1144:1392" ph="{...}" />
+            <marker date="1509089324000" expanded="true" signature="1275:1377" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Pcx/PointCloudRenderer.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="470">
+          <caret line="138" column="52" lean-forward="true" selection-start-line="138" selection-start-column="52" selection-end-line="138" selection-end-column="52" />
+          <folding>
+            <marker date="1526766946879" expanded="true" signature="33:6183" ph="{...}" />
+            <marker date="1526766946879" expanded="true" signature="111:6181" ph="{...}" />
+            <marker date="1526766946879" expanded="true" signature="126:389" ph="Editable attributes" />
+            <marker date="1526766946879" expanded="true" signature="399:535" ph="Internal resources" />
+            <marker date="1526766946879" expanded="true" signature="545:933" ph="Private variables" />
+            <marker date="1526766946879" expanded="true" signature="943:6175" ph="MonoBehaviour methods" />
+            <marker date="1526766946879" expanded="true" signature="999:1070" ph="{...}" />
+            <marker date="1526766946879" expanded="true" signature="1096:1799" ph="{...}" />
+            <marker date="1526766946879" expanded="true" signature="1217:1789" ph="{...}" />
+            <marker date="1526766946879" expanded="true" signature="1825:2318" ph="{...}" />
+            <marker date="1526766946879" expanded="true" signature="1871:2308" ph="{...}" />
+            <marker date="1526766946879" expanded="true" signature="1928:2087" ph="{...}" />
+            <marker date="1526766946879" expanded="true" signature="2108:2294" ph="{...}" />
+            <marker date="1526766946879" expanded="true" signature="2341:3749" ph="{...}" />
+            <marker date="1526766946879" expanded="true" signature="2422:2784" ph="{...}" />
+            <marker date="1526766946879" expanded="true" signature="2842:3739" ph="{...}" />
+            <marker date="1526766946879" expanded="true" signature="3780:6155" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Pcx/Shaders/Common.cginc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Pcx/Shaders/Sorter.compute">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" column="8" lean-forward="true" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
