@@ -15,6 +15,7 @@ void SerialServoController::setup() {
     // setup hardware
     //servo.attach(SERVO_PIN, -1, 0, 180, 500, 2500); // 180° for PDI-6221MG
     servo.attach(devicePin, -1, 0, 180, 650, 2150); // 180° for MG995R
+    //servo.attach(devicePin, -1, 0, 180, 1000, 2000); // 180° correct format
     servo.write(90);
 }
 
@@ -43,5 +44,15 @@ void SerialServoController::loop() {
         servo.write(angle);
 
         Serial.println("moving to " + angle);
+    }
+
+    if(inputString.startsWith("p"))
+    {
+        // move with pulse width, example: "p:1500"
+        inputString.remove(0, 2);
+        auto pulseWidth = inputString.toInt();
+        servo.writeMicroseconds(pulseWidth);
+
+        Serial.println("moving to " + pulseWidth);
     }
 }
