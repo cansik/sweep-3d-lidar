@@ -39,6 +39,7 @@ void savePointCloud(PShape cloud, String fileName)
 
   ply.elements.put("vertex", vertex);
   //ply.setFormat(ASCII);
+  ply.setFormat(BINARY_LITTLE_ENDIAN);
   println(ply);
 
   try
