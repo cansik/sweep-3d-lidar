@@ -4,6 +4,11 @@
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets/GhostFreeRoamCamera" t="Include">
+        <e p="Scripts" t="Include">
+          <e p="GhostFreeRoamCamera.cs" t="Include" />
+        </e>
+      </e>
       <e p="Assets/pcx" t="Include">
         <e p="Editor" t="Include">
           <e p="PlyImporter.cs" t="Include" />
@@ -19,6 +24,9 @@
           <e p="Primitive.shader" t="Include" />
           <e p="Sorter.compute" t="Include" />
         </e>
+      </e>
+      <e p="Assets/Scripts" t="Include">
+        <e p="Orbit.cs" t="Include" />
       </e>
       <e p="Library" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />

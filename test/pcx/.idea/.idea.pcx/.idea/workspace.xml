@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7a90eef8-7377-4875-a816-a9fdbfa87a7c" name="Default" comment="" />
+    <list default="true" id="7a90eef8-7377-4875-a816-a9fdbfa87a7c" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.pcx/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.pcx/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.pcx/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.pcx/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assembly-CSharp-Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp-Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assembly-CSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Test/Compute.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Test/Compute.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pcx.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/pcx.sln.DotSettings.user" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,11 +18,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Sorter.compute" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Sorter.compute" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Pcx/Shaders/Sorter.compute">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+            <state relative-caret-position="345">
+              <caret line="23" column="43" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Orbit.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assets/Scripts/Orbit.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+              <folding>
+                <marker date="1526769163399" expanded="false" signature="6:78" ph="..." />
+                <marker date="1526769163399" expanded="true" signature="115:410" ph="{...}" />
+                <marker date="1526769163399" expanded="true" signature="220:290" ph="{...}" />
+                <marker date="1526769163399" expanded="true" signature="309:408" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -62,6 +84,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Pcx/Shaders/Primitive.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Orbit.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Pcx/PointCloudRenderer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Pcx/Shaders/MultiMode.shader" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Pcx/Shaders/Geometry.shader" root0="FORCE_HIGHLIGHTING" />
@@ -75,6 +98,7 @@
         <option value="$PROJECT_DIR$/Assets/Pcx/Shaders/MultiMode.shader" />
         <option value="$PROJECT_DIR$/Assets/Pcx/Shaders/Common.cginc" />
         <option value="$PROJECT_DIR$/Assets/Pcx/Shaders/Sorter.compute" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Orbit.cs" />
       </list>
     </option>
   </component>
@@ -157,12 +181,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1526767486942</updated>
-      <workItem from="1526767490427" duration="722000" />
+      <workItem from="1526767490427" duration="2222000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="722000" />
+    <option name="totallyTimeSpent" value="2222000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -175,7 +199,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1920" height="1102" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="Errors In Solution" />
@@ -291,8 +314,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Pcx/Shaders/Sorter.compute">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+        <state relative-caret-position="345">
+          <caret line="23" column="43" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/Orbit.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+          <folding>
+            <marker date="1526769163399" expanded="false" signature="6:78" ph="..." />
+            <marker date="1526769163399" expanded="true" signature="115:410" ph="{...}" />
+            <marker date="1526769163399" expanded="true" signature="220:290" ph="{...}" />
+            <marker date="1526769163399" expanded="true" signature="309:408" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
