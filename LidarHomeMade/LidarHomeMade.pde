@@ -5,6 +5,8 @@ import peasy.org.apache.commons.math.geometry.*;
 import oscP5.*;
 import netP5.*;
 
+import controlP5.*;
+
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +19,8 @@ SweepSensor sweep;
 PGraphics space;
 
 PeasyCam cam;
+
+PreciseServo servo = new PreciseServo(this, "/dev/tty.SLAB_USBtoUART");
 
 List<CloudPoint> points = new ArrayList<CloudPoint>();
 
@@ -89,6 +93,7 @@ void setup()
   {
     speedBar.addItem(i + " Hz", i);
   }
+  speedBar.setValue(4);
 
   h += 25;
   sampleRateBar = cp5.addButtonBar("onSampleRateChanged")
@@ -99,6 +104,7 @@ void setup()
   sampleRateBar.addItem("500 Hz", 500);
   sampleRateBar.addItem("750 Hz", 750);
   sampleRateBar.addItem("1000 Hz", 1000);
+  sampleRateBar.setValue(0);
 
   h += 25;
   cp5.addButton("startScan")
@@ -227,7 +233,7 @@ void draw()
 void performScan()
 {
   // move to location
-  moveServoInstant(currentAngle);
+  servo.move(currentAngle);
 
   // wait for motor to be in area
   delay(scanWaitTime);
@@ -251,9 +257,9 @@ void performScan()
   {
     println("finished scanning!");
     isScanning = false;
-    moveServoInstant(90);
+    servo.move(90);
 
-    closeServo();
+    servo.detach();
     sweep.stop();
 
     println("creating point cloud...");
@@ -417,7 +423,7 @@ void startScan(int value)
   println("starting sweep with Speed " + motorSpeed + " Hz and Sample Rate " + sampleRate + " Hz...");
 
   // setup servo and sweep sensor
-  setupServo();
+  servo.attach();
 
   sweep = new SweepSensor(this);
   sweep.startAsync("/dev/tty.usbserial-DO004HM4", motorSpeed, sampleRate);
@@ -428,7 +434,7 @@ void startScan(int value)
   currentAngle = startAngle;
 
   // move and wait at angle
-  moveServoInstant(currentAngle);
+  servo.move(currentAngle);
   delay(1000);
 
   points.clear();
