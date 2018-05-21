@@ -39,6 +39,8 @@ class Scan implements Runnable {
   StopWatch watch;
   long estimatedTime = 0;
 
+  String scanTimeStamp = "";
+
   public Scan(PApplet parent)
   {
     this.parent = parent;
@@ -64,6 +66,8 @@ class Scan implements Runnable {
     catch(Exception ex)
     {
     }
+
+    finishedScanning();
   }
 
   public void run() {
@@ -95,7 +99,7 @@ class Scan implements Runnable {
 
     // move and wait at angle
     servo.move(currentAngle);
-    delay(1000);
+    threadSleep(1000);
 
     points.clear();
   }
@@ -106,7 +110,9 @@ class Scan implements Runnable {
     servo.move(currentAngle);
 
     // wait for motor to be in area
-    delay(scanWaitTime);
+    threadSleep(scanWaitTime);
+
+    println(scanIterationCount);
 
     for (int i = 0; i < scanIterationCount; i++)
     {
@@ -135,6 +141,9 @@ class Scan implements Runnable {
     servo.move(90);
 
     println("finished!");
+
+    scanTimeStamp = day()+"/"+month()+"/"+year()+" - "+hour()+":"+minute()+":"+second();
+
     watch.stop();
     println("Scan took " + formatTime(watch.elapsed()));
     isScanning = false;
@@ -148,7 +157,7 @@ class Scan implements Runnable {
 
   void estimateScanTime()
   {
-    float oneIterationTime = (1000f / motorSpeed) * 1.8; // 1.8 is just a guess
+    float oneIterationTime = (1000f / motorSpeed) * 2.0; // 1.8 is just a guess
     float oneSliceTime = (scanIterationCount * oneIterationTime) + scanWaitTime;
     float angleCount = endAngle - startAngle;
     float sliceCount = angleCount * (1f / angleStepSize) / sampleStep;
@@ -217,6 +226,8 @@ class Scan implements Runnable {
     Path path = Paths.get(fileName);
     PLY ply = new PLY();
 
+    addComments(ply);
+
     PLYElementList vertex = new PLYElementList(cloud.getVertexCount());
 
     // coordinates
@@ -246,8 +257,8 @@ class Scan implements Runnable {
     }
 
     ply.elements.put("vertex", vertex);
-    //ply.setFormat(ASCII);
-    ply.setFormat(BINARY_LITTLE_ENDIAN);
+    ply.setFormat(ASCII);
+    //ply.setFormat(BINARY_LITTLE_ENDIAN);
     println(ply);
 
     try
@@ -298,5 +309,38 @@ class Scan implements Runnable {
     }
 
     cloud.endShape();
+  }
+
+  void addComments(PLY ply)
+  {
+    int i = 3;
+
+    ply.comments.put(i++, "CSK LIDAR SCAN (" + softwareVersion + ")");
+    ply.comments.put(i++, "scanTimeStamp " + scanTimeStamp);
+    ply.comments.put(i++, "motorZCorrection " + motorZCorrection);
+    ply.comments.put(i++, "standFilterSize " + standFilterSize);
+    ply.comments.put(i++, "signalStrengthFilter " + signalStrengthFilter);
+    ply.comments.put(i++, "startAngle " + startAngle);
+    ply.comments.put(i++, "endAngle " + endAngle);
+    ply.comments.put(i++, "currentAngle " + currentAngle);
+    ply.comments.put(i++, "angleStepSize " + angleStepSize);
+    ply.comments.put(i++, "scanWaitTime " + scanWaitTime);
+    ply.comments.put(i++, "sampleStep " + sampleStep);
+    ply.comments.put(i++, "scanIterationCount " + scanIterationCount);
+    ply.comments.put(i++, "motorSpeed " + motorSpeed);
+    ply.comments.put(i++, "sampleRate " + sampleRate);
+    ply.comments.put(i++, "estimatedTime " + estimatedTime);
+    ply.comments.put(i++, "elapsedTime " + watch.elapsed());
+  }
+
+  void threadSleep(long millis)
+  {
+    try
+    {
+      Thread.sleep(millis);
+    }
+    catch(Exception ex)
+    {
+    }
   }
 }

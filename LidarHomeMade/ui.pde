@@ -21,8 +21,7 @@ void setupUI()
   angleStepSizeBar = cp5.addButtonBar("onAngleStepSizeChanged")
     .setPosition(10, h)
     .setSize(200, 20)
-    .setCaptionLabel("Angle Step")
-    .plugTo(scan);
+    .setCaptionLabel("Angle Step");
   angleStepSizeBar.addItem("0.25°", 0.25f);
   angleStepSizeBar.addItem("0.5°", 0.5f);
   angleStepSizeBar.addItem("0.75°", 0.75f);
@@ -48,7 +47,6 @@ void setupUI()
     .setPosition(10, h)
     .setSize(200, 20)
     .setCaptionLabel("Speed")
-    .plugTo(scan)
     ;
   for (int i = 1; i <= 10; i++)
   {
@@ -61,7 +59,6 @@ void setupUI()
     .setPosition(10, h)
     .setSize(200, 20)
     .setCaptionLabel("Sample Rate")
-    .plugTo(scan)
     ;
   sampleRateBar.addItem("500 Hz", 500);
   sampleRateBar.addItem("750 Hz", 750);
@@ -76,11 +73,11 @@ void setupUI()
     .setCaptionLabel("Scan")
     ;
 
-  cp5.addButton("createPointCloud")
+  cp5.addButton("cancelScan")
     .setValue(100)
     .setPosition(10 + 85, h)
-    .setSize(100, 19)
-    .setCaptionLabel("Create Pointcloud")
+    .setSize(75, 19)
+    .setCaptionLabel("Cancel Scan")
     ;
 
   h += 30;
@@ -139,6 +136,13 @@ void setupUI()
     .setPosition(10, h)
     .setSize(75, 19)
     .setCaptionLabel("New Scan")
+    ;
+
+  cp5.addButton("createPointCloud")
+    .setValue(100)
+    .setPosition(10 + 80, h)
+    .setSize(100, 19)
+    .setCaptionLabel("Create Pointcloud")
     ;
 }
 
@@ -216,6 +220,14 @@ void newScanPressed(int value)
   if (!isReady)
     return;
   createNewScan();
+}
+
+void cancelScan(int value)
+{
+  if (!isReady)
+    return;
+
+  scan.cancel();
 }
 
 public String formatTime(long millis)

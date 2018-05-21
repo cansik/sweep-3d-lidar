@@ -32,10 +32,14 @@ Scan scan;
 Timer recreationTimer = new Timer(1000);
 float lastRecreatedAngle = 0.0f;
 
+String softwareVersion = "0.1";
+
 void setup()
 {
   size(1280, 800, P3D);
   pixelDensity(2);
+
+  surface.setTitle("CSK LIDAR " + softwareVersion);
 
   cam = new PeasyCam(this, 400);
   cam.setSuppressRollRotationMode();
