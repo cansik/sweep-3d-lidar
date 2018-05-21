@@ -5,6 +5,8 @@ import org.jengineering.sjmply.PLY;
 import static org.jengineering.sjmply.PLYType.*;
 import static org.jengineering.sjmply.PLYFormat.*;
 
+import java.util.concurrent.*;
+
 class Scan implements Runnable {
   List<CloudPoint> points;
   PShape cloud;
@@ -37,7 +39,7 @@ class Scan implements Runnable {
   public Scan(PApplet parent)
   {
     this.parent = parent;
-    points = new ArrayList<CloudPoint>();
+    points = new CopyOnWriteArrayList<CloudPoint>();
     cloud = createShape();
   }
 

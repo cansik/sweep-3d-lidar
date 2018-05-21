@@ -29,7 +29,8 @@ boolean isPointFilter = true;
 
 Scan scan;
 
-
+Timer recreationTimer = new Timer(1000);
+float lastRecreatedAngle = 0.0f;
 
 void setup()
 {
@@ -68,6 +69,12 @@ void draw()
   // show is scanning info
   if (scan.isScanning)
   {
+    if (recreationTimer.elapsed() && lastRecreatedAngle != scan.currentAngle)
+    { 
+      lastRecreatedAngle = scan.currentAngle;
+      scan.createPointCloudFromData();
+    }
+
     cam.beginHUD();
     translate(width / 2, height / 2);
 
