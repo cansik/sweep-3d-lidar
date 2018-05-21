@@ -28,13 +28,14 @@ PShape cloud;
 
 boolean isReady = false;
 boolean isScanning = false;
-int startAngle = 0;
-int endAngle = 180;
-int currentAngle;
+float startAngle = 0f;
+float endAngle = 180f;
+float currentAngle;
+float angleStepSize = 1.0f;
 
 // stand filter
-int standFilterSize = 100;
-int signalStrengthFilter = 125;
+int standFilterSize = 80;
+int signalStrengthFilter = 50;
 
 float motorZCorrection = 0; // cm
 
@@ -51,8 +52,10 @@ boolean showLIDAR = true;
 boolean isPointFilter = true;
 
 ControlP5 cp5;
+
 ButtonBar sampleRateBar;
 ButtonBar speedBar;
+ButtonBar angleStepSizeBar;
 
 void setup()
 {
@@ -73,7 +76,19 @@ void setup()
     .setRange(1, 15)
     .setLabel("Sample Step");
 
-  h += 20;
+  h += 25;
+  angleStepSizeBar = cp5.addButtonBar("onAngleStepSizeChanged")
+    .setPosition(10, h)
+    .setSize(200, 20)
+    .setCaptionLabel("Angle Step")
+    ;
+  angleStepSizeBar.addItem("0.25°", 0.25f);
+  angleStepSizeBar.addItem("0.5°", 0.5f);
+  angleStepSizeBar.addItem("0.75°", 0.75f);
+  angleStepSizeBar.addItem("1°", 1f);
+  angleStepSizeBar.changeItem("1°", "selected", true);
+
+  h += 25;
   cp5.addSlider("scanIterationCount", 10, 150, 10, h, 100, 15)
     .setRange(1, 15)
     .setLabel("Iteration Count");
@@ -93,7 +108,7 @@ void setup()
   {
     speedBar.addItem(i + " Hz", i);
   }
-  speedBar.setValue(4);
+  speedBar.changeItem("5 Hz", "selected", true);
 
   h += 25;
   sampleRateBar = cp5.addButtonBar("onSampleRateChanged")
@@ -104,7 +119,7 @@ void setup()
   sampleRateBar.addItem("500 Hz", 500);
   sampleRateBar.addItem("750 Hz", 750);
   sampleRateBar.addItem("1000 Hz", 1000);
-  sampleRateBar.setValue(0);
+  sampleRateBar.changeItem("500 Hz", "selected", true);
 
   h += 25;
   cp5.addButton("startScan")
@@ -251,7 +266,7 @@ void performScan()
   }
 
   // show and move to next angle
-  currentAngle += sampleStep;
+  currentAngle += (sampleStep * angleStepSize);
 
   if (currentAngle > endAngle)
   {
@@ -376,6 +391,12 @@ void onSampleRateChanged(int n)
 {
   Map<String, Object> values = (Map<String, Object>)sampleRateBar.getItems().get(n);
   sampleRate = (int)values.get("value");
+}
+
+void onAngleStepSizeChanged(int n)
+{
+  Map<String, Object> values = (Map<String, Object>)angleStepSizeBar.getItems().get(n);
+  angleStepSize = (float)values.get("value");
 }
 
 void keyPressed()
