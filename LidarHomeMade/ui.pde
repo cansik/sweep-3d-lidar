@@ -217,3 +217,21 @@ void newScanPressed(int value)
     return;
   createNewScan();
 }
+
+public String formatTime(long millis)
+{
+  long second = (millis / 1000) % 60;
+  long minute = (millis / (1000 * 60)) % 60;
+  long hour = (millis / (1000 * 60 * 60)) % 24;
+
+  if (minute == 0 && hour == 0 && second == 0)
+    return String.format("%02dms", millis);
+
+  if (minute == 0 && hour == 0)
+    return String.format("%02ds", second);
+
+  if (hour == 0)
+    return String.format("%02dm %02ds", minute, second);
+
+  return String.format("%02dh %02dm %02ds", hour, minute, second);
+}

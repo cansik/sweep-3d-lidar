@@ -36,11 +36,15 @@ class Scan implements Runnable {
 
   Thread scanThread;
 
+  StopWatch watch;
+  long estimatedTime = 0;
+
   public Scan(PApplet parent)
   {
     this.parent = parent;
     points = new CopyOnWriteArrayList<CloudPoint>();
     cloud = createShape();
+    watch = new StopWatch();
   }
 
   public void start()
@@ -63,6 +67,7 @@ class Scan implements Runnable {
   }
 
   public void run() {
+    watch.start();
     prepareScan();
     while (isScanning && !isCancel)
     {
@@ -76,6 +81,8 @@ class Scan implements Runnable {
       return;
 
     isScanning = true;
+
+    estimateScanTime();
 
     println("starting sweep with Speed " + motorSpeed + " Hz and Sample Rate " + sampleRate + " Hz...");
 
@@ -128,6 +135,8 @@ class Scan implements Runnable {
     servo.move(90);
 
     println("finished!");
+    watch.stop();
+    println("Scan took " + formatTime(watch.elapsed()));
     isScanning = false;
 
     servo.detach();
@@ -135,6 +144,22 @@ class Scan implements Runnable {
 
     println("creating point cloud...");
     createPointCloudFromData();
+  }
+
+  void estimateScanTime()
+  {
+    float oneIterationTime = (1000f / motorSpeed) * 1.8; // 1.8 is just a guess
+    float oneSliceTime = (scanIterationCount * oneIterationTime) + scanWaitTime;
+    float angleCount = endAngle - startAngle;
+    float sliceCount = angleCount * (1f / angleStepSize) / sampleStep;
+    estimatedTime = Math.round(sliceCount * oneSliceTime) + (10 * 1000); // 10 seconds for motor waiting
+
+    println("Estimations: ");
+    println("Iteration Time: " + formatTime(Math.round(oneIterationTime)));
+    println("Slice Time: " + formatTime(Math.round(oneSliceTime)));
+    println("Angles: " + angleCount);
+    println("SliceCount: " + sliceCount);
+    println("Estimated Time: " + formatTime(estimatedTime));
   }
 
   public void createPointCloudFromData()

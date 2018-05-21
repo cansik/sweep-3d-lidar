@@ -96,9 +96,14 @@ void draw()
   textSize(14);
   fill(0, 255, 0);
   textAlign(LEFT, CENTER);
-  text("FPS: " + frameRate 
+
+  String infoText = "FPS: " + frameRate 
     + "\nVertex Count: " + scan.cloud.getVertexCount() 
-    + "\nCaptured Vertices: " + scan.points.size(), 20, height - 70);
+    + "\nCaptured Vertices: " + scan.points.size()
+    + "\nTime: " + formatTime(scan.watch.elapsed()) 
+    + "\nEstimated: " + formatTime(scan.estimatedTime);
+
+  text(infoText, 20, height - 90);
 
   cp5.draw();
   cam.endHUD();
