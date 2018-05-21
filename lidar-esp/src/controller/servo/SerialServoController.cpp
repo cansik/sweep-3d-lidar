@@ -13,8 +13,10 @@ void SerialServoController::setup() {
     BaseController::setup();
 
     // setup hardware
-    //servo.attach(SERVO_PIN, -1, 0, 180, 500, 2500); // 180° for PDI-6221MG
-    servo.attach(devicePin, -1, 0, 180, 650, 2150); // 180° for MG995R
+    // p: 500 = 0, ? = 90, 2570 = 180
+    servo.attach(devicePin, -1, 0, 180, 500, 2570); // 180° for PDI-6221MG with power
+    //servo.attach(devicePin, -1, 0, 180, 500, 2500); // 180° for PDI-6221MG // 1380 => center
+    //servo.attach(devicePin, -1, 0, 180, 650, 2150); // 180° for MG995R
     //servo.attach(devicePin, -1, 0, 180, 1000, 2000); // 180° correct format
     servo.write(90);
 }
