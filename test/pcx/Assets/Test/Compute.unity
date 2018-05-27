@@ -215,7 +215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &773054663
 AudioListener:
   m_ObjectHideFlags: 0
@@ -304,13 +304,14 @@ GameObject:
   - component: {fileID: 885451576}
   - component: {fileID: 885451575}
   - component: {fileID: 885451579}
+  - component: {fileID: 885451580}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &885451575
 AudioListener:
   m_ObjectHideFlags: 0
@@ -396,6 +397,23 @@ MonoBehaviour:
   cursorSensitivity: 0.025
   cursorToggleAllowed: 1
   cursorToggleButton: 27
+--- !u!114 &885451580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 885451574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9dee624369bb467ea8c3f225902b24e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  captureWidth: 3840
+  captureHeight: 2160
+  hideGameObject: {fileID: 0}
+  optimizeForManyScreenshots: 0
+  format: 2
+  folder: /Users/cansik/Google Drive/ZHdK/Thesis/Disposition/screenshots/
 --- !u!1 &1745594727
 GameObject:
   m_ObjectHideFlags: 0

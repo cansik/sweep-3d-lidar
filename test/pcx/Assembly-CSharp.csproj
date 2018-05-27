@@ -46,7 +46,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.dll</HintPath>
@@ -57,6 +57,7 @@
     <Compile Include="Assets\Pcx\PointCloudBuffer.cs" />
     <Compile Include="Assets\Pcx\PointCloudRenderer.cs" />
     <Compile Include="Assets\Scripts\Orbit.cs" />
+    <Compile Include="Assets\Scripts\ScreenCapture.cs" />
     <None Include="Assets\Pcx\Shaders\Sorter.compute" />
     <None Include="Assets\Pcx\Shaders\Geometry.shader" />
     <None Include="Assets\Pcx\Shaders\MultiMode.shader" />
@@ -168,13 +169,238 @@
   </Target>
   -->
   <ItemGroup>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ARModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AccessibilityModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ClothModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ClusterInputModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ClusterRendererModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.CrashReportingModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.DirectorModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.GameCenterModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.GridModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.ParticlesLegacyModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ParticlesLegacyModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.PerformanceReportingModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ScreenCaptureModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.SharedInternalsModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.SpriteMaskModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.SpriteShapeModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.StyleSheetsModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.StyleSheetsModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TerrainModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TerrainPhysicsModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.TilemapModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TilemapModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UIElementsModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.UNETModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UNETModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityAnalyticsModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityConnectModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.VRModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.VehiclesModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.VideoModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.WebModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.WebModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.WindModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

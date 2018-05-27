@@ -27,6 +27,7 @@
       </e>
       <e p="Assets/Scripts" t="Include">
         <e p="Orbit.cs" t="Include" />
+        <e p="ScreenCapture.cs" t="Include" />
       </e>
       <e p="Library" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
