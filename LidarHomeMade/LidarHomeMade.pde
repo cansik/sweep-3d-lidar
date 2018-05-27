@@ -109,7 +109,12 @@ void draw()
 
   text(infoText, 20, height - 90);
 
-  cp5.draw();
+  try
+  {
+    cp5.draw();
+  }
+  catch(Exception ex) {
+  }
   cam.endHUD();
 }
 
