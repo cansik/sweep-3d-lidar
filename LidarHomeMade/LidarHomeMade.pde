@@ -17,6 +17,9 @@ PeasyCam cam;
 String sweepPath = "/dev/tty.usbserial-DO004HM4";
 String servoPath = "/dev/tty.SLAB_USBtoUART";
 
+boolean isSweepAvailable = false;
+boolean isServoAvailable = false;
+
 PreciseServo servo = new PreciseServo(this, servoPath);
 
 boolean isReady = false;
@@ -33,6 +36,8 @@ Timer recreationTimer = new Timer(1000);
 float lastRecreatedAngle = 0.0f;
 
 String softwareVersion = "0.1";
+
+Timer devicesTimer = new Timer(3000);
 
 void setup()
 {
@@ -68,6 +73,12 @@ void draw()
     return;
   }
 
+  // check device status
+  if (devicesTimer.elapsed())
+  {
+    checkDevices();
+  }
+
   displayData();
 
   // show is scanning info
@@ -98,10 +109,15 @@ void draw()
   cam.beginHUD();
 
   textSize(14);
-  fill(0, 255, 0);
+
+  if (isSweepAvailable && isServoAvailable)
+    fill(0, 255, 0);
+  else
+    fill(255, 0, 0);
   textAlign(LEFT, CENTER);
 
   String infoText = "FPS: " + frameRate 
+    + "\nLIDAR: " + isSweepAvailable + " Servo: " + isServoAvailable
     + "\nVertex Count: " + scan.cloud.getVertexCount() 
     + "\nCaptured Vertices: " + scan.points.size()
     + "\nTime: " + formatTime(scan.watch.elapsed()) 
@@ -172,4 +188,10 @@ void createNewScan()
   scan = new Scan(this);
   setupUI();
   isReady = true;
+}
+
+void checkDevices()
+{
+  isSweepAvailable = new File(sweepPath).exists();
+  isServoAvailable = new File(servoPath).exists();
 }

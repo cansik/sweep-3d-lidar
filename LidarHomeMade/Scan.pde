@@ -190,6 +190,7 @@ class Scan implements Runnable {
       float angle = Math.abs(point.sample.getAngle());
       boolean filteredbyStand = angle >= filterStartAngle && angle <= filterEndAngle;
       boolean fileredbySignal = point.sample.getSignalStrength() < signalStrengthFilter;
+
       if (isPointFilter && (filteredbyStand || fileredbySignal))
       {
         filteredCount++;
@@ -216,6 +217,17 @@ class Scan implements Runnable {
       float y = space.modelY(0f, 0f, 0f);
       float z = space.modelZ(0f, 0f, 0f);
 
+      // filter
+      boolean filteredByArea = abs(x) > scan.scanArea.x || abs(y) > scan.scanArea.y || abs(z) > scan.scanArea.z;
+
+      if (isPointFilter && filteredByArea)
+      {
+        filteredCount++;
+        space.popMatrix();
+        continue;
+      }
+
+      // add point to vertex
       cloud.vertex(x, y, z);
       space.popMatrix();
     }

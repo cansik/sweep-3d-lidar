@@ -96,7 +96,7 @@ void setupUI()
     .plugTo(scan)
     .setValue(scan.signalStrengthFilter);
 
-  h += 20;
+  h += 25;
   cp5.addSlider("x", 10, 150, 10, h, 100, 15)
     .setRange(0, 1000)
     .setLabel("Area Width")
@@ -117,7 +117,7 @@ void setupUI()
     .plugTo(scan.scanArea)
     .setValue(scan.scanArea.y);
 
-  h += 20;
+  h += 25;
   cp5.addSlider("pointSize", 10, 150, 10, h, 100, 15)
     .setRange(0.5, 5)
     .setLabel("Point Size");
