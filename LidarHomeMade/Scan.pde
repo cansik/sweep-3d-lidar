@@ -16,6 +16,9 @@ class Scan implements Runnable {
 
   float motorZCorrection = 0; // cm
 
+  // grid filter
+  PVector scanArea = new PVector(300, 300, 300);
+
   // stand filter
   int standFilterSize = 80;
   int signalStrengthFilter = 50;

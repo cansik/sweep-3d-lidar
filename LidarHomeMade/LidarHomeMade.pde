@@ -127,7 +127,7 @@ void displayData()
   strokeWeight(1);
   stroke(255);
   noFill();
-  box(300);
+  box(scan.scanArea.x, scan.scanArea.y, scan.scanArea.z);
 
   if (showLIDAR)
   {

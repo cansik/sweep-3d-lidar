@@ -6,6 +6,8 @@ ButtonBar sampleRateBar;
 ButtonBar speedBar;
 ButtonBar angleStepSizeBar;
 
+int uiHeight;
+
 void setupUI()
 {
   cp5.setAutoDraw(false);
@@ -95,6 +97,27 @@ void setupUI()
     .setValue(scan.signalStrengthFilter);
 
   h += 20;
+  cp5.addSlider("x", 10, 150, 10, h, 100, 15)
+    .setRange(0, 1000)
+    .setLabel("Area Width")
+    .plugTo(scan.scanArea)
+    .setValue(scan.scanArea.x);
+
+  h += 20;
+  cp5.addSlider("z", 10, 150, 10, h, 100, 15)
+    .setRange(0, 1000)
+    .setLabel("Area Length")
+    .plugTo(scan.scanArea)
+    .setValue(scan.scanArea.z);
+
+  h += 20;
+  cp5.addSlider("y", 10, 150, 10, h, 100, 15)
+    .setRange(0, 1000)
+    .setLabel("Area Height")
+    .plugTo(scan.scanArea)
+    .setValue(scan.scanArea.y);
+
+  h += 20;
   cp5.addSlider("pointSize", 10, 150, 10, h, 100, 15)
     .setRange(0.5, 5)
     .setLabel("Point Size");
@@ -144,6 +167,8 @@ void setupUI()
     .setSize(100, 19)
     .setCaptionLabel("Create Pointcloud")
     ;
+
+  uiHeight = h;
 }
 
 void onMotorSpeedChanged(int n)

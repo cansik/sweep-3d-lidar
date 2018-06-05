@@ -14,7 +14,7 @@ void keyPressed()
 void mousePressed() {
 
   // suppress cam on UI
-  if (mouseX > 0 && mouseX < 300 && mouseY > 0 && mouseY < 300) {
+  if (mouseX > 0 && mouseX < 200 && mouseY > 0 && mouseY < uiHeight) {
     cam.setActive(false);
   } else {
     cam.setActive(true);
