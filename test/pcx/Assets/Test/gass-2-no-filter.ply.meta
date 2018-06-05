@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: fee0631575f214c7dabb81cb0ddb35cd
+timeCreated: 1528229511
+licenseType: Free
+ScriptedImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 183c1cb276390b14e883dae29f585dfa, type: 3}
+  _containerType: 1
