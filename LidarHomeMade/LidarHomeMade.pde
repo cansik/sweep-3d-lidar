@@ -56,7 +56,7 @@ void setup()
 
 void draw()
 {
-  background(0);
+  background(54, 54, 54);
 
   if (camRotate)
     cam.rotateY(radians(0.5));
@@ -111,9 +111,9 @@ void draw()
   textSize(14);
 
   if (isSweepAvailable && isServoAvailable)
-    fill(0, 255, 0);
+    fill(168, 230, 206);
   else
-    fill(255, 0, 0);
+    fill(232, 23, 93);
   textAlign(LEFT, CENTER);
 
   String infoText = "FPS: " + frameRate 
@@ -148,7 +148,7 @@ void displayData()
   if (showLIDAR)
   {
     // show sweep position
-    stroke(255, 255, 0);
+    stroke(167, 34, 110);
     noFill();
     sphereDetail(5);
     sphere(10);
@@ -169,15 +169,15 @@ void showAxisMarker()
   strokeWeight(3);
 
   // x
-  stroke(255, 0, 0);
+  stroke(236, 32, 73);
   line(0, 0, 0, axisLength, 0, 0);
 
   // y
-  stroke(0, 255, 0);
+  stroke(47, 149, 153);
   line(0, 0, 0, 0, axisLength, 0);
 
   // z
-  stroke(0, 0, 255);
+  stroke(247, 219, 79);
   line(0, 0, 0, 0, 0, axisLength);
 }
 

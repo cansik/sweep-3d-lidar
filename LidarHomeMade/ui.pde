@@ -98,21 +98,21 @@ void setupUI()
 
   h += 25;
   cp5.addSlider("x", 10, 150, 10, h, 100, 15)
-    .setRange(0, 1000)
+    .setRange(0, 5000)
     .setLabel("Area Width")
     .plugTo(scan.scanArea)
     .setValue(scan.scanArea.x);
 
   h += 20;
   cp5.addSlider("z", 10, 150, 10, h, 100, 15)
-    .setRange(0, 1000)
+    .setRange(0, 5000)
     .setLabel("Area Length")
     .plugTo(scan.scanArea)
     .setValue(scan.scanArea.z);
 
   h += 20;
   cp5.addSlider("y", 10, 150, 10, h, 100, 15)
-    .setRange(0, 1000)
+    .setRange(0, 5000)
     .setLabel("Area Height")
     .plugTo(scan.scanArea)
     .setValue(scan.scanArea.y);

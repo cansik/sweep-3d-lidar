@@ -218,7 +218,9 @@ class Scan implements Runnable {
       float z = space.modelZ(0f, 0f, 0f);
 
       // filter
-      boolean filteredByArea = abs(x) > scan.scanArea.x || abs(y) > scan.scanArea.y || abs(z) > scan.scanArea.z;
+      boolean filteredByArea = abs(x) > (scan.scanArea.x / 2f) 
+        || abs(y) > (scan.scanArea.y  / 2f)
+        || abs(z) > (scan.scanArea.z  / 2f);
 
       if (isPointFilter && filteredByArea)
       {
