@@ -54,6 +54,12 @@ class Scan implements Runnable {
 
   public void start()
   {
+    // set framerate
+    if (powerSafeMode)
+    {
+      frameRate(scanFrameRate);
+    }
+
     scanThread = new Thread(this);
     scanThread.start();
   }
@@ -80,6 +86,8 @@ class Scan implements Runnable {
     {
       performScan();
     }
+
+    powerModeSwitched = true;
   }
 
   public void prepareScan()

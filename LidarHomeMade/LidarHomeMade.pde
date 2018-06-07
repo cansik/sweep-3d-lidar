@@ -29,6 +29,13 @@ float pointSize = 3.0f;
 boolean camRotate = false;
 boolean showLIDAR = true;
 boolean isPointFilter = true;
+boolean powerSafeMode = true;
+
+boolean powerModeSwitched = true;
+
+int defaultFrameRate = 60;
+int powerSafeFrameRate = 25;
+int scanFrameRate = 1;
 
 Scan scan;
 
@@ -58,6 +65,13 @@ void draw()
 {
   background(54, 54, 54);
 
+  // power mode
+  if (powerModeSwitched)
+  {
+    frameRate(powerSafeMode ? powerSafeFrameRate : defaultFrameRate);
+    powerModeSwitched = false;
+  }
+
   if (camRotate)
     cam.rotateY(radians(0.5));
 
@@ -84,7 +98,7 @@ void draw()
   // show is scanning info
   if (scan.isScanning)
   {
-    if (recreationTimer.elapsed() && lastRecreatedAngle != scan.currentAngle)
+    if (!powerSafeMode && recreationTimer.elapsed() && lastRecreatedAngle != scan.currentAngle)
     { 
       lastRecreatedAngle = scan.currentAngle;
       scan.createPointCloudFromData();

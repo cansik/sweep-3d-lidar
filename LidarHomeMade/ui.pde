@@ -139,6 +139,13 @@ void setupUI()
     .setCaptionLabel("Point Filter");
 
   h += 45;
+  cp5.addToggle("changePowerSafeMode")
+    .setPosition(10, h)
+    .setSize(50, 20)
+    .setCaptionLabel("Power Safe")
+    .setValue(powerSafeMode);
+
+  h += 45;
   cp5.addButton("saveCloud")
     .setValue(100)
     .setPosition(10, h)
@@ -253,6 +260,15 @@ void cancelScan(int value)
     return;
 
   scan.cancel();
+}
+
+void changePowerSafeMode(int value)
+{
+  if (!isReady)
+    return;
+
+  powerSafeMode = !powerSafeMode;
+  powerModeSwitched = true;
 }
 
 public String formatTime(long millis)
