@@ -12,3 +12,7 @@ A prototype of the sweep lidar scanner used for 3d scanning.
 ![Hardware](readme/hardware.jpg)
 
 *Hardware setup*
+
+**License**
+
+[MIT License](LICENSE)
