@@ -217,8 +217,8 @@ class Scan implements Runnable {
       // correct translation
       space.translate(point.sample.getLocation().x, point.sample.getLocation().y, motorZCorrection);
 
-      cloud.fill(255, 0, point.sample.getSignalStrength());
-      cloud.stroke(255, 0, point.sample.getSignalStrength());
+      cloud.fill(point.sample.getSignalStrength());
+      cloud.stroke(point.sample.getSignalStrength());
       cloud.strokeWeight(pointSize);
 
       float x = space.modelX(0f, 0f, 0f);

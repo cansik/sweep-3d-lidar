@@ -24,7 +24,9 @@ PreciseServo servo = new PreciseServo(this, servoPath);
 
 boolean isReady = false;
 
-float pointSize = 3.0f;
+float pointSize = 2.0f;
+float cloudScale = 1.0f;
+color pointColor = color(255);
 
 boolean camRotate = false;
 boolean showLIDAR = true;
@@ -42,9 +44,11 @@ Scan scan;
 Timer recreationTimer = new Timer(1000);
 float lastRecreatedAngle = 0.0f;
 
-String softwareVersion = "0.1";
+String softwareVersion = "0.2";
 
 Timer devicesTimer = new Timer(3000);
+
+PShader pointShader;
 
 void setup()
 {
@@ -59,11 +63,13 @@ void setup()
   createNewScan();
 
   space = createGraphics(10, 10, P3D);
+
+  pointShader = loadShader("shader/pointColor.glsl", "shader/pointVertex.glsl");
 }
 
 void draw()
 {
-  background(54, 54, 54);
+  background(12);
 
   // power mode
   if (powerModeSwitched)
@@ -172,7 +178,12 @@ void displayData()
   }
 
   // render cloud
+  pointShader.set("cloudScale", cloudScale);
+  pointShader.set("pointColor", red(pointColor) / 255f, green(pointColor) / 255f, blue(pointColor) / 255f, alpha(pointColor) / 255f);
+
+  shader(pointShader);
   shape(scan.cloud);
+  resetShader();
 
   popMatrix();
 }

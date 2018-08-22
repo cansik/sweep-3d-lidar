@@ -2,3 +2,5 @@ lidar-esp/.idea
 lidar-esp/cmake-build-debug
 *.ply
 LidarHomeMade/data/forest/mesh
+test/pcx/obj/Debug
+test/pcx

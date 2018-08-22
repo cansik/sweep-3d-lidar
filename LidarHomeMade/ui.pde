@@ -5,6 +5,7 @@ ControlP5 cp5;
 ButtonBar sampleRateBar;
 ButtonBar speedBar;
 ButtonBar angleStepSizeBar;
+CustomColorPicker pointColorPicker;
 
 int uiHeight;
 
@@ -123,6 +124,24 @@ void setupUI()
     .setLabel("Point Size");
 
   h += 25;
+  cp5.addSlider("cloudScale", 10, 150, 10, h, 100, 15)
+    .setRange(0.2, 3)
+    .setLabel("Cloud Scale");
+
+  h += 25;
+  /*
+  cp5.addColorPicker("colorPicker")
+   .setWidth(100)
+   .setPosition(10, h)
+   .setColorValue(pointColor);
+   */
+  pointColorPicker = new CustomColorPicker(cp5, "colorPicker");
+  pointColorPicker.setItemSize(100, 10);
+  pointColorPicker.setPosition(10, h);
+  pointColorPicker.setColorValue(pointColor);
+
+
+  h += 100;
   cp5.addToggle("camRotate")
     .setPosition(10, h)
     .setSize(50, 20)
@@ -269,6 +288,13 @@ void changePowerSafeMode(int value)
 
   powerSafeMode = !powerSafeMode;
   powerModeSwitched = true;
+}
+
+void colorPicker(int col) {
+  if (!isReady)
+    return;
+
+  pointColor = col;
 }
 
 public String formatTime(long millis)
