@@ -64,7 +64,7 @@ void setup()
 
   space = createGraphics(10, 10, P3D);
 
-  pointShader = loadShader("shader/pointColor.glsl", "shader/pointVertex.glsl");
+  pointShader = loadShader("data/shader/pointColor.glsl", "data/shader/pointVertex.glsl");
 }
 
 void draw()

@@ -4,3 +4,4 @@ lidar-esp/cmake-build-debug
 LidarHomeMade/data/forest/mesh
 test/pcx/obj/Debug
 test/pcx
+LidarHomeMade/application.macosx
