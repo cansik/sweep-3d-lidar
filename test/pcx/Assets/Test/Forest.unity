@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731196, g: 0.38074002, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074, b: 0.35872698, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -414,6 +414,7 @@ MonoBehaviour:
   optimizeForManyScreenshots: 0
   format: 2
   folder: /Users/cansik/Google Drive/ZHdK/Thesis/Disposition/screenshots/
+  preText: forest
 --- !u!1 &1745594727
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,5 +558,6 @@ MonoBehaviour:
   _pointColor: {r: 0.5204629, g: 0.5138408, b: 0.7058823, a: 1}
   _reColor: {r: 1, g: 1, b: 1, a: 1}
   _pointSize: 0.03
+  change: 1
   _shader: {fileID: 4800000, guid: 0a7444653a0b1044fa61020c1d447823, type: 3}
   _sorter: {fileID: 7200000, guid: 6b02c1b253bc4d4458047116b48b2c13, type: 3}

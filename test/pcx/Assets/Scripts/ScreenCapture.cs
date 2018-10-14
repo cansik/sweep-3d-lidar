@@ -26,6 +26,8 @@
  
      // folder to write output (defaults to data path)
      public string folder;
+
+     public string preText = "screen";
  
      // private vars for screenshot
      private Rect rect;
@@ -56,12 +58,12 @@
              System.IO.Directory.CreateDirectory(folder);
  
              // count number of files of specified format in folder
-             string mask = string.Format("screen_{0}x{1}*.{2}", width, height, format.ToString().ToLower());
+             string mask = string.Format(preText + "_{0}x{1}*.{2}", width, height, format.ToString().ToLower());
              counter = Directory.GetFiles(folder, mask, SearchOption.TopDirectoryOnly).Length;
          }
  
          // use width, height, and counter for unique file name
-         var filename = string.Format("{0}/screen_{1}x{2}_{3}.{4}", folder, width, height, counter, format.ToString().ToLower());
+         var filename = string.Format("{0}/" + preText + "_{1}x{2}_{3}.{4}", folder, width, height, counter, format.ToString().ToLower());
  
          // up counter for next call
          ++counter;
