@@ -1,8 +1,9 @@
 fileFormatVersion: 2
 guid: 399f159955bd14ae4b6862388a82138a
-timeCreated: 1528228765
-licenseType: Free
 ScriptedImporter:
+  fileIDToRecycleName:
+    11400000: buffer
+  externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
